@@ -55,20 +55,28 @@ export default class Login extends React.Component {
             />
             <button className="button">Login</button>
           </form>
-          <button
-            data-social-login="loginWithFacebook"
-            type="button"
-            class="btn"
-          >
-            <i className="fab fa-facebook-square" />
-          </button>
-          <button
-            data-social-login="loginWithFacebook"
-            type="button"
-            class="btn"
-          >
-            <i className="fab fa-google-plus-square" />
-          </button>
+          <p>
+            <span>
+              <button
+                data-social-login="loginWithFacebook"
+                type="button"
+                className="button"
+              >
+                Login
+                <i className="fab fa-facebook-square" />
+              </button>
+            </span>
+            <span>
+              <button
+                data-social-login="loginWithGoogle"
+                type="button"
+                className="button"
+              >
+                Login
+                <i className="fab fa-google-plus-square" />
+              </button>
+            </span>
+          </p>
           <Link to="/signup">Need an account?</Link>
         </div>
       </div>
