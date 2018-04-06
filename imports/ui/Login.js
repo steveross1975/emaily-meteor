@@ -16,11 +16,11 @@ export default class Login extends React.Component {
     let email = this.refs.email.value.trim();
     let password = this.refs.password.value.trim();
 
-    Meteor.loginWithPassword({email}, password, (err) => {
+    Meteor.loginWithPassword({ email }, password, err => {
       if (err) {
-        this.setState({error: 'Unable to login. Check email and password'});
+        this.setState({ error: 'Unable to login. Check email and password' });
       } else {
-        this.setState({error: ''});
+        this.setState({ error: '' });
       }
     });
   }
@@ -32,14 +32,46 @@ export default class Login extends React.Component {
 
           {this.state.error ? <p>{this.state.error}</p> : undefined}
 
-          <form className="boxed-view__form" noValidate onSubmit={this.onSubmit.bind(this)/*bind(this) is mandatory to access the onSubmit inside the component*/}>
-             <input type="email" ref="email" name="email" placeholder="youremail@yourserver.xxx"/>
-             <input type="password" ref="password" name="password" placeholder="Type your password here"/>
-             <button className="button">Login</button>
+          <form
+            className="boxed-view__form"
+            noValidate
+            onSubmit={
+              this.onSubmit.bind(
+                this
+              ) /*bind(this) is mandatory to access the onSubmit inside the component*/
+            }
+          >
+            <input
+              type="email"
+              ref="email"
+              name="email"
+              placeholder="youremail@yourserver.xxx"
+            />
+            <input
+              type="password"
+              ref="password"
+              name="password"
+              placeholder="Type your password here"
+            />
+            <button className="button">Login</button>
           </form>
+          <button
+            data-social-login="loginWithFacebook"
+            type="button"
+            class="btn"
+          >
+            <i className="fab fa-facebook-square" />
+          </button>
+          <button
+            data-social-login="loginWithFacebook"
+            type="button"
+            class="btn"
+          >
+            <i className="fab fa-google-plus-square" />
+          </button>
           <Link to="/signup">Need an account?</Link>
         </div>
       </div>
     );
   }
-};
+}
