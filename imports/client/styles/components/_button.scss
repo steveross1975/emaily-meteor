@@ -36,3 +36,19 @@
   text-decoration: underline;
   text-transform: none;
 }
+
+.button--fb {
+  background-color: #3b5998;
+}
+.button--gplus {
+  background-color: #d62d20;
+}
+.button--user-pwd {
+  font-size: $base-font-size / 1.05;
+  text-transform: none;
+  font-weight: 200;
+}
+
+.button-console {
+  display: flex;
+}

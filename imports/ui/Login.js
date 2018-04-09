@@ -10,6 +10,8 @@ export default class Login extends React.Component {
       error: ''
       //count: this.props.count || 0
     };
+    this.loginWithFacebook = this.loginWithFacebook.bind(this);
+    this.loginWithGoogle = this.loginWithGoogle.bind(this);
   }
   onSubmit(e) {
     e.preventDefault();
@@ -21,6 +23,23 @@ export default class Login extends React.Component {
         this.setState({ error: 'Unable to login. Check email and password' });
       } else {
         this.setState({ error: '' });
+      }
+    });
+  }
+  loginWithFacebook() {
+    Meteor.loginWithFacebook(
+      { requestPermissions: ['public_profile', 'email'] },
+      function(err) {
+        if (err) {
+          console.log('Handle errors here: ', err);
+        }
+      }
+    );
+  }
+  loginWithGoogle() {
+    Meteor.loginWithGoogle({}, function(err) {
+      if (err) {
+        console.log('Handle errors here: ', err);
       }
     });
   }
@@ -45,7 +64,7 @@ export default class Login extends React.Component {
               type="email"
               ref="email"
               name="email"
-              placeholder="youremail@yourserver.xxx"
+              placeholder="youremail@yourserver.xyz"
             />
             <input
               type="password"
@@ -53,27 +72,27 @@ export default class Login extends React.Component {
               name="password"
               placeholder="Type your password here"
             />
-            <button className="button">Login</button>
+            <button className="button button--user-pwd">
+              Login with User and Password
+            </button>
           </form>
           <p>
-            <span>
+            <span className="button-console">
               <button
-                data-social-login="loginWithFacebook"
+                onClick={this.loginWithFacebook}
                 type="button"
-                className="button"
+                className="button button--fb"
               >
-                Login
-                <i className="fab fa-facebook-square" />
+                {/* Login &nbsp; <i className="fab fa-facebook-square" /> */}
+                <i className="fab fa-facebook-square fa-2x" />
               </button>
-            </span>
-            <span>
+              &nbsp;&nbsp;&nbsp;
               <button
-                data-social-login="loginWithGoogle"
+                onClick={this.loginWithGoogle}
                 type="button"
-                className="button"
+                className="button button--gplus"
               >
-                Login
-                <i className="fab fa-google-plus-square" />
+                <i className="fab fa-google-plus-square fa-2x" />
               </button>
             </span>
           </p>
